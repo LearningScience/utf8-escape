@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+const main = require('../lib/utf8-escape.js');
+const pack = require('../package.json');
+const prog = require('commander');
+const vfs = require('vinyl-fs');
+
+prog.usage('[OPTIONS]... [FILE]...')
+	.option('-R, --recursive')
+	.option('-n, --dry-run')
+	.option('-v, --verbose')
+	.option('-q, --quiet')
+	.option('-f, --format <EXT=NOTATION>')
+	.version(pack.version);
+
+prog.parse(process.argv);
+const args = prog.args;
+const opts = prog.opts();
+
+if (opts.recursive) {
+	args.map(path => args.push(`${path}/**`));
+}
+
+if (opts.format) {
+	let format = opts.format.split('=');
+	opts.format = {};
+	opts.format[format[0]] = format[1];
+}
+
+vfs.src(args, {base: './'})
+.pipe(main(opts))
+.pipe(vfs.dest('./', {overwrite: !opts.dryRun}));

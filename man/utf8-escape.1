@@ -1,0 +1,40 @@
+.TH UTF8-ESCAPE 1
+
+.SH NAME
+
+utf8-escape - multi format UTF-8 escape utility
+
+.SH SYNOPSIS
+
+.B utf8-escape
+.RI [ OPTIONS ]...\ [ FILE ]...
+
+.SH OPTIONS
+
+.TP
+.BI -R,\ --recursive
+Recurse any directories. Alternatively use globbing (without this option) to achieve more refined selection, wrap globs in quotes to prevent shell expansion.
+
+.TP
+.BI -n,\ --dry-run
+Do not write any changes. Useful to confirm file selection and verify encoding before applying any changes, commonly used with -v option to see ASCII files.
+
+.TP
+.BI -v,\ --verbose
+Increase output verbosity, output encoding details for every file. Lists all selected files regardless of encoding or support, as UTF-8, ASCII or BINARY.
+
+.TP
+.BI -q,\ --quiet
+Decrease output verbosity, suppress all output including errors. Useful when invoking from a shell script or as part of a build pipeline e.g Gulp / Gurt.
+
+.TP
+.BI -f,\ --format\ < EXT=NOTATION >
+Define custom escape notation formats where {b:p:s} denotes the code point and it's numeric base (b), zero padding width (p), and use of surrogates (s):
+
+ES5:
+
+.B utf8-escape -f 'js=\\\u{16:4:1}' './dist/**'
+
+ES6:
+
+.B utf8-escape -f 'js=\\\u{{16:0:0}}' './dist/**'
