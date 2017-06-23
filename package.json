@@ -1,0 +1,24 @@
+{
+	"name": "utf8-escape",
+	"version": "0.0.0",
+	"main": "lib/utf8-escape.js",
+	"directories": {
+		"bin": "bin",
+		"lib": "lib",
+		"man": "man"
+	},
+	"author": "Thomas Brierley",
+	"license": "MIT",
+	"description": "Multi format UTF-8 escape utility",
+	"keywords": [
+		"utf8",
+		"escape",
+		"ascii"
+	],
+	"repository": "github:learningscience/utf8-escape",
+	"dependencies": {
+		"commander": "^2",
+		"vinyl-fs": "^2",
+		"through2": "^2"
+	}
+}
