@@ -1,6 +1,6 @@
 {
 	"name": "utf8-escape",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"main": "lib/utf8-escape.js",
 	"directories": {
 		"bin": "bin",
